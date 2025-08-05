@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javac
+  namespace: devops
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: javac
+  template:
+    metadata:
+      labels:
+        app: javac
+    spec:
+      containers:
+      - name: javac
+        image: surya9961/javacalculator
+        ports:
+        - containerPort: 8080
+
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: javac-service
+  namespace: devops
+spec:
+  selector:
+    app: javac
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: ClusterIP
