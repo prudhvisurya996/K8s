@@ -1,4 +1,4 @@
-Deployment
+
 
 apiVersion: apps/v1
 kind: Deployment
@@ -21,7 +21,7 @@ spec:
 
 
 
-Service:
+
 
 apiVersion: v1
 kind: Service
@@ -35,5 +35,4 @@ spec:
   - port: 80
     targetPort: 80
   type: ClusterIP
-        ports:
-        - containerPort: 80
+      
