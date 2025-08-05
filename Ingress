@@ -1,34 +1,5 @@
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.2.0/deploy/static/provider/cloud/deploy.yaml
-kubectl get pods -n ingress-nginx
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.13.0/deploy/static/provider/cloud/deploy.yaml
+
+kubectl get ns
+
 kubectl get svc -n ingress-nginx
-
-
----------------------------------------------------
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: my-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-  rules:
-  - host: www.yourdomain.com   # <<< your domain here
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: reddit-clone-service
-            port:
-              number: 3000
---------------------------------------------------------------------------
-kubectl apply -f ingress.yaml
-
-4. Final GoDaddy Setup
-In GoDaddy ➔ DNS ➔
-Add a CNAME record for www ➔ point to your Ingress Controller LoadBalancer DNS.
-
-
-Name | Type | Value
-www | CNAME | a1b2c3d4e5f6.us-east-1.elb.amazonaws.com
